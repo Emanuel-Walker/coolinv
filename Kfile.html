@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌳 A Special Invite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sky-blue: #87CEEB;
+            --light-blue: #B8E4F9;
+            --soft-blue: #E8F4FC;
+            --bright-blue: #4A90D9;
+            --lorax-orange: #FF8C42;
+            --lorax-yellow: #FFD166;
+            --truffula-pink: #FF6B9D;
+            --truffula-purple: #9B59B6;
+            --grass-green: #7CB518;
+            --warm-white: #FFF9F0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(180deg, var(--soft-blue) 0%, var(--light-blue) 50%, var(--sky-blue) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #2C3E50;
+        }
+
+        /* Floating clouds */
+        .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: floatCloud 20s linear infinite;
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: inherit;
+            border-radius: 50%;
+        }
+
+        .cloud-1 { width: 100px; height: 40px; top: 10%; left: -150px; animation-duration: 25s; }
+        .cloud-1::before { width: 50px; height: 50px; top: -25px; left: 15px; }
+        .cloud-1::after { width: 60px; height: 60px; top: -35px; left: 45px; }
+
+        .cloud-2 { width: 120px; height: 50px; top: 25%; left: -180px; animation-duration: 30s; animation-delay: 5s; }
+        .cloud-2::before { width: 60px; height: 60px; top: -30px; left: 20px; }
+        .cloud-2::after { width: 70px; height: 70px; top: -40px; left: 55px; }
+
+        .cloud-3 { width: 80px; height: 35px; top: 5%; left: -130px; animation-duration: 22s; animation-delay: 10s; }
+        .cloud-3::before { width: 45px; height: 45px; top: -22px; left: 10px; }
+        .cloud-3::after { width: 50px; height: 50px; top: -28px; left: 35px; }
+
+        @keyframes floatCloud {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw + 200px)); }
+        }
+
+        /* Truffula Trees Background */
+        .truffula-forest {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .truffula-tree {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .truffula-trunk {
+            width: 8px;
+            background: linear-gradient(to right, #8B4513, #A0522D, #8B4513);
+            border-radius: 4px;
+        }
+
+        .truffula-top {
+            border-radius: 50%;
+            animation: sway 3s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .tree-1 { left: 5%; }
+        .tree-1 .truffula-trunk { height: 120px; }
+        .tree-1 .truffula-top { width: 60px; height: 80px; background: var(--truffula-pink); animation-delay: 0s; }
+
+        .tree-2 { left: 15%; }
+        .tree-2 .truffula-trunk { height: 100px; }
+        .tree-2 .truffula-top { width: 50px; height: 65px; background: var(--lorax-orange); animation-delay: 0.5s; }
+
+        .tree-3 { left: 25%; }
+        .tree-3 .truffula-trunk { height: 140px; }
+        .tree-3 .truffula-top { width: 70px; height: 90px; background: var(--truffula-purple); animation-delay: 1s; }
+
+        .tree-4 { left: 75%; }
+        .tree-4 .truffula-trunk { height: 110px; }
+        .tree-4 .truffula-top { width: 55px; height: 70px; background: var(--lorax-yellow); animation-delay: 1.5s; }
+
+        .tree-5 { left: 85%; }
+        .tree-5 .truffula-trunk { height: 130px; }
+        .tree-5 .truffula-top { width: 65px; height: 85px; background: var(--truffula-pink); animation-delay: 2s; }
+
+        .tree-6 { left: 92%; }
+        .tree-6 .truffula-trunk { height: 90px; }
+        .tree-6 .truffula-top { width: 45px; height: 60px; background: var(--bright-blue); animation-delay: 2.5s; }
+
+        /* Grass */
+        .grass {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: var(--grass-green);
+            z-index: 2;
+        }
+
+        .grass::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                var(--grass-green) 10px,
+                var(--grass-green) 12px
+            );
+            background-size: 20px 20px;
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            padding-bottom: 80px;
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Lorax Character - Detailed CSS Version */
+        .lorax-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .lorax {
+            width: 160px;
+            height: 200px;
+            position: relative;
+            animation: loraxBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes loraxBounce {
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+
+        /* Lorax Body - fuzzy orange oval */
+        .lorax-body {
+            width: 110px;
+            height: 120px;
+            background: radial-gradient(ellipse at center, #FF9644 0%, #FF7B2E 50%, #E86A1C 100%);
+            border-radius: 50% 50% 45% 45%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 
+                inset -8px -8px 20px rgba(0,0,0,0.15),
+                inset 8px 8px 20px rgba(255,255,255,0.1),
+                0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Fuzzy texture overlay */
+        .lorax-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255,180,100,0.4) 0%, transparent 15%),
+                radial-gradient(circle at 70% 25%, rgba(255,180,100,0.3) 0%, transparent 12%),
+                radial-gradient(circle at 40% 60%, rgba(255,200,120,0.3) 0%, transparent 18%),
+                radial-gradient(circle at 80% 70%, rgba(255,180,100,0.25) 0%, transparent 14%);
+        }
+
+        /* Lorax Face Container */
+        .lorax-face {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+        }
+
+        /* Big Bushy Eyebrows */
+        .lorax-eyebrows {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .eyebrow {
+            width: 38px;
+            height: 18px;
+            background: linear-gradient(to bottom, #FFE066 0%, #FFCC00 50%, #E6B800 100%);
+            border-radius: 50% 50% 30% 30%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .eyebrow.left { 
+            transform: rotate(-20deg) skewX(-5deg); 
+            border-radius: 60% 40% 30% 40%;
+        }
+        .eyebrow.right { 
+            transform: rotate(20deg) skewX(5deg); 
+            border-radius: 40% 60% 40% 30%;
+        }
+
+        /* Eyes */
+        .lorax-eyes {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 18px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .lorax-eye {
+            width: 22px;
+            height: 26px;
+            background: radial-gradient(ellipse at 40% 40%, #fff 0%, #f0f0f0 100%);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 
+                inset 0 -2px 4px rgba(0,0,0,0.1),
+                0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        /* Pupils */
+        .lorax-eye::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 12px;
+            background: radial-gradient(ellipse at 30% 30%, #4a4a4a 0%, #1a1a1a 100%);
+            border-radius: 50%;
+            top: 8px;
+            left: 6px;
+            animation: lookAround 4s ease-in-out infinite;
+        }
+
+        @keyframes lookAround {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(2px, -1px); }
+            50% { transform: translate(-2px, 0); }
+            75% { transform: translate(1px, 1px); }
+        }
+
+        /* Eye shine */
+        .lorax-eye::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            top: 6px;
+            left: 12px;
+            z-index: 10;
+        }
+
+        /* Nose */
+        .lorax-nose {
+            width: 18px;
+            height: 14px;
+            background: radial-gradient(ellipse at 40% 40%, #FFB366 0%, #E88A2E 100%);
+            border-radius: 50%;
+            margin: 8px auto 0;
+            box-shadow: 
+                inset -2px -2px 4px rgba(0,0,0,0.15),
+                0 2px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Big Glorious Mustache */
+        .lorax-mustache {
+            width: 130px;
+            height: 55px;
+            position: relative;
+            margin: 2px auto 0;
+            margin-left: -15px;
+        }
+
+        .mustache-center {
+            position: absolute;
+            width: 40px;
+            height: 25px;
+            background: linear-gradient(to bottom, #FFE066 0%, #FFCC00 40%, #E6B800 100%);
+            border-radius: 0 0 50% 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            z-index: 5;
+        }
+
+        .mustache-side {
+            position: absolute;
+            width: 55px;
+            height: 45px;
+            background: linear-gradient(to bottom, #FFE066 0%, #FFCC00 40%, #E6B800 100%);
+            top: 5px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+
+        .mustache-side.left {
+            left: 0;
+            border-radius: 0 20% 60% 50%;
+            transform: rotate(-15deg);
+            background: linear-gradient(135deg, #FFE066 0%, #FFCC00 40%, #D9A600 100%);
+        }
+
+        .mustache-side.right {
+            right: 0;
+            border-radius: 20% 0 50% 60%;
+            transform: rotate(15deg);
+            background: linear-gradient(225deg, #FFE066 0%, #FFCC00 40%, #D9A600 100%);
+        }
+
+        /* Mustache curls at the ends */
+        .mustache-side.left::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 25px;
+            background: linear-gradient(to bottom, #FFCC00, #D9A600);
+            border-radius: 50% 0 50% 50%;
+            bottom: -8px;
+            left: -5px;
+            transform: rotate(-30deg);
+        }
+
+        .mustache-side.right::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 25px;
+            background: linear-gradient(to bottom, #FFCC00, #D9A600);
+            border-radius: 0 50% 50% 50%;
+            bottom: -8px;
+            right: -5px;
+            transform: rotate(30deg);
+        }
+
+        /* Little feet */
+        .lorax-feet {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 30px;
+        }
+
+        .lorax-foot {
+            width: 25px;
+            height: 12px;
+            background: linear-gradient(to bottom, #FF8C42, #E67332);
+            border-radius: 50%;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Initial screen */
+        .invite-card {
+            background: var(--warm-white);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 4px solid var(--bright-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invite-card::before {
+            content: '🌳';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 1.5rem;
+        }
+
+        .invite-card::after {
+            content: '🌳';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .invite-title {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            color: var(--lorax-orange);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .invite-name {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(2rem, 7vw, 3rem);
+            color: var(--bright-blue);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 var(--lorax-yellow);
+        }
+
+        .invite-question {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: #555;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .dare-btn {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--bright-blue), var(--sky-blue));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.4);
+        }
+
+        .dare-btn:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 8px 30px rgba(74, 144, 217, 0.5);
+        }
+
+        /* Question screen */
+        .question-card {
+            background: var(--warm-white);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            border: 4px solid var(--lorax-orange);
+        }
+
+        .lorax-quote {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            color: var(--lorax-orange);
+            margin-bottom: 30px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .lorax-quote span {
+            color: var(--bright-blue);
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            min-height: 80px;
+            align-items: center;
+        }
+
+        .btn {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            padding: 15px 45px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, var(--grass-green), #5a9216);
+            color: white;
+            box-shadow: 0 5px 20px rgba(124, 181, 24, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(124, 181, 24, 0.5);
+        }
+
+        .btn-no {
+            background: rgba(150, 150, 150, 0.25);
+            color: #666;
+            border: 2px solid rgba(150, 150, 150, 0.4);
+            position: relative;
+            transition: all 0.15s ease-out;
+        }
+
+        .btn-no:hover {
+            background: rgba(150, 150, 150, 0.35);
+        }
+
+        /* Date Details Screen */
+        .details-screen {
+            max-width: 650px;
+        }
+
+        .celebration-header {
+            margin-bottom: 30px;
+        }
+
+        .yay-text {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            color: var(--lorax-orange);
+            text-shadow: 3px 3px 0 var(--lorax-yellow);
+            animation: celebrate 0.5s ease-out;
+        }
+
+        @keyframes celebrate {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .lorax-says {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .date-card {
+            background: var(--warm-white);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid var(--bright-blue);
+            text-align: left;
+            animation: slideIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .date-card:nth-child(2) { animation-delay: 0.2s; }
+        .date-card:nth-child(3) { animation-delay: 0.4s; }
+        .date-card:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .date-card.dinner { border-left-color: var(--lorax-orange); }
+        .date-card.dessert { border-left-color: var(--truffula-pink); }
+        .date-card.wrap-up { border-left-color: var(--grass-green); }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card-emoji {
+            font-size: 2.5rem;
+        }
+
+        .card-title {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(1.3rem, 4vw, 1.7rem);
+            color: var(--bright-blue);
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .detail-icon {
+            font-size: 1.2rem;
+            min-width: 25px;
+        }
+
+        .detail-text {
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .detail-text strong {
+            color: var(--bright-blue);
+        }
+
+        .vibe-box {
+            background: linear-gradient(135deg, var(--soft-blue), var(--light-blue));
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .vibe-title {
+            font-family: 'Baloo 2', cursive;
+            color: var(--bright-blue);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .vibe-text {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .dress-code {
+            background: linear-gradient(135deg, var(--lorax-yellow), #FFE4A0);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .dress-emoji {
+            font-size: 2rem;
+        }
+
+        .dress-text {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .final-card {
+            background: linear-gradient(135deg, var(--bright-blue), var(--sky-blue));
+            border-radius: 25px;
+            padding: 30px;
+            color: white;
+            text-align: center;
+            animation: slideIn 0.6s ease-out;
+            animation-delay: 0.8s;
+            animation-fill-mode: both;
+        }
+
+        .final-text {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            margin-bottom: 15px;
+        }
+
+        .final-subtext {
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            opacity: 0.9;
+        }
+
+        .final-emoji {
+            font-size: 3rem;
+            margin-top: 15px;
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Confetti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            display: none;
+        }
+
+        .confetti-container.active {
+            display: block;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            animation: confettiFall 4s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Floating Lorax emojis for celebration */
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            display: none;
+        }
+
+        .floating-icons.active {
+            display: block;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatUp 3s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 1; transform: translateY(80vh) scale(1); }
+            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 180px;
+            }
+
+            .date-card {
+                padding: 20px;
+            }
+
+            .truffula-forest {
+                height: 200px;
+            }
+
+            .tree-1 .truffula-trunk, .tree-2 .truffula-trunk, .tree-3 .truffula-trunk,
+            .tree-4 .truffula-trunk, .tree-5 .truffula-trunk, .tree-6 .truffula-trunk {
+                height: 80px !important;
+            }
+
+            .tree-1 .truffula-top, .tree-2 .truffula-top, .tree-3 .truffula-top,
+            .tree-4 .truffula-top, .tree-5 .truffula-top, .tree-6 .truffula-top {
+                width: 40px !important;
+                height: 50px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background elements -->
+    <div class="clouds">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+    </div>
+
+    <div class="truffula-forest">
+        <div class="truffula-tree tree-1">
+            <div class="truffula-top"></div>
+            <div class="truffula-trunk"></div>
+        </div>
+        <div class="truffula-tree tree-2">
+            <div class="truffula-top"></div>
+            <div class="truffula-trunk"></div>
+        </div>
+        <div class="truffula-tree tree-3">
+            <div class="truffula-top"></div>
+            <div class="truffula-trunk"></div>
+        </div>
+        <div class="truffula-tree tree-4">
+            <div class="truffula-top"></div>
+            <div class="truffula-trunk"></div>
+        </div>
+        <div class="truffula-tree tree-5">
+            <div class="truffula-top"></div>
+            <div class="truffula-trunk"></div>
+        </div>
+        <div class="truffula-tree tree-6">
+            <div class="truffula-top"></div>
+            <div class="truffula-trunk"></div>
+        </div>
+    </div>
+
+    <div class="grass"></div>
+    <div class="confetti-container" id="confetti"></div>
+    <div class="floating-icons" id="floating-icons"></div>
+
+    <!-- Main container -->
+    <div class="container">
+        
+        <!-- Initial invite screen -->
+        <div class="screen active" id="initial-screen">
+            <div class="lorax-container">
+                <div class="lorax">
+                    <div class="lorax-body">
+                        <div class="lorax-face">
+                            <div class="lorax-eyebrows">
+                                <div class="eyebrow left"></div>
+                                <div class="eyebrow right"></div>
+                            </div>
+                            <div class="lorax-eyes">
+                                <div class="lorax-eye"></div>
+                                <div class="lorax-eye"></div>
+                            </div>
+                            <div class="lorax-nose"></div>
+                            <div class="lorax-mustache">
+                                <div class="mustache-center"></div>
+                                <div class="mustache-side left"></div>
+                                <div class="mustache-side right"></div>
+                            </div>
+                        </div>
+                        <div class="lorax-feet">
+                            <div class="lorax-foot"></div>
+                            <div class="lorax-foot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="invite-card">
+                <div class="invite-title">Varnie has an invite for you...</div>
+                <div class="invite-name">Kiley!</div>
+                <div class="invite-question">Do you dare to open it?</div>
+                <button class="dare-btn" id="dare-btn">I dare! 🌳</button>
+            </div>
+        </div>
+
+        <!-- Question screen -->
+        <div class="screen" id="question-screen">
+            <div class="lorax-container">
+                <div class="lorax">
+                    <div class="lorax-body">
+                        <div class="lorax-face">
+                            <div class="lorax-eyebrows">
+                                <div class="eyebrow left"></div>
+                                <div class="eyebrow right"></div>
+                            </div>
+                            <div class="lorax-eyes">
+                                <div class="lorax-eye"></div>
+                                <div class="lorax-eye"></div>
+                            </div>
+                            <div class="lorax-nose"></div>
+                            <div class="lorax-mustache">
+                                <div class="mustache-center"></div>
+                                <div class="mustache-side left"></div>
+                                <div class="mustache-side right"></div>
+                            </div>
+                        </div>
+                        <div class="lorax-feet">
+                            <div class="lorax-foot"></div>
+                            <div class="lorax-foot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="lorax-quote">
+                    "I am the Lorax, I speak for the trees...<br>
+                    and the trees say <span>Kiley should go on this date, please!</span>" 🌳
+                </div>
+                <p style="font-size: 1.2rem; margin-bottom: 25px; color: #555;">
+                    Will you accept Varnie's Sunday evening adventure?
+                </p>
+                <div class="buttons-container" id="buttons-container">
+                    <button class="btn btn-yes" id="btn-yes">Yes! 🌳</button>
+                    <button class="btn btn-no" id="btn-no">No thanks</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Date details screen -->
+        <div class="screen details-screen" id="details-screen">
+            <div class="lorax-container">
+                <div class="lorax">
+                    <div class="lorax-body">
+                        <div class="lorax-face">
+                            <div class="lorax-eyebrows">
+                                <div class="eyebrow left"></div>
+                                <div class="eyebrow right"></div>
+                            </div>
+                            <div class="lorax-eyes">
+                                <div class="lorax-eye"></div>
+                                <div class="lorax-eye"></div>
+                            </div>
+                            <div class="lorax-nose"></div>
+                            <div class="lorax-mustache">
+                                <div class="mustache-center"></div>
+                                <div class="mustache-side left"></div>
+                                <div class="mustache-side right"></div>
+                            </div>
+                        </div>
+                        <div class="lorax-feet">
+                            <div class="lorax-foot"></div>
+                            <div class="lorax-foot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="celebration-header">
+                <div class="yay-text">Unless someone like you cares... 🌳</div>
+                <div class="lorax-says">The Lorax approves! 🌳 Here's the plan:</div>
+            </div>
+
+            <div class="date-card dinner">
+                <div class="card-header">
+                    <div class="card-emoji">🍽️</div>
+                    <div>
+                        <div class="card-title">Rumi's Kitchen</div>
+                        <div class="card-subtitle">Persian Cuisine • Dinner</div>
+                    </div>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-icon">📍</span>
+                    <span class="detail-text">1175 Peachtree St NE, Suite 130, Atlanta<br><em>(Colony Square, Midtown)</em></span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-icon">🕕</span>
+                    <span class="detail-text"><strong>6:30 PM</strong> reservation</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-icon">🅿️</span>
+                    <span class="detail-text">Colony Square parking deck — I'll validate it at the restaurant so <strong>parking is free!</strong></span>
+                </div>
+
+                <div class="vibe-box">
+                    <div class="vibe-title">✨ The Vibe</div>
+                    <div class="vibe-text">Beautiful Persian restaurant with dim lighting, Persian rugs, and a romantic but relaxed atmosphere. Date-night elegant—think cozy and polished.</div>
+                </div>
+
+                <div class="detail-row" style="margin-top: 15px;">
+                    <span class="detail-icon">🍴</span>
+                    <span class="detail-text">Amazing kebabs, saffron rice, fresh bread. <a href="https://static1.squarespace.com/static/6840cbf29346cf2038058f74/t/695e6345733caa4bb9bf11dc/1767793477451/CS+-+Dinner+JAN+2026.pdf" target="_blank" style="color: var(--bright-blue); font-weight: 600;">Check out the menu here!</a></span>
+                </div>
+
+                <div class="dress-code">
+                    <div class="dress-emoji">👗</div>
+                    <div class="dress-text">I'm wearing dress pants and a button-down. A dress or something you'd dress up a little for would be perfect—nothing crazy formal, just polished!</div>
+                </div>
+            </div>
+
+            <div class="date-card dessert">
+                <div class="card-header">
+                    <div class="card-emoji">🍰</div>
+                    <div>
+                        <div class="card-title">Café Intermezzo</div>
+                        <div class="card-subtitle">European Dessert Café</div>
+                    </div>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-icon">📍</span>
+                    <span class="detail-text">1845 Savoy Dr, Dunwoody<br><em>(15-min drive from Rumi's)</em></span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-icon">🕗</span>
+                    <span class="detail-text"><strong>~8:00-8:15 PM</strong> (after dinner)</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-icon">🅿️</span>
+                    <span class="detail-text"><strong>Free parking</strong> right there!</span>
+                </div>
+
+                <div class="vibe-box">
+                    <div class="vibe-title">✨ The Vibe</div>
+                    <div class="vibe-text">European-style dessert café with a huge dessert case, plush seating, coffee and cocktails. Low-key, cozy, perfect spot to sit and talk over cake and coffee without feeling rushed.</div>
+                </div>
+            </div>
+
+            <div class="date-card wrap-up">
+                <div class="card-header">
+                    <div class="card-emoji">🌙</div>
+                    <div>
+                        <div class="card-title">Wrap-Up</div>
+                        <div class="card-subtitle">End of Evening</div>
+                    </div>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-icon">⏰</span>
+                    <span class="detail-text">A full evening but not crazy late!</span>
+                </div>
+            </div>
+
+            <div class="final-card">
+                <div class="final-text">"Unless someone like you cares a whole awful lot, nothing is going to get better. It's not."</div>
+                <div class="final-subtext">I care a whole awful lot about this date — excited to see you, Kiley!</div>
+                <div class="final-emoji">🌳✨🌳</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Screen elements
+        const initialScreen = document.getElementById('initial-screen');
+        const questionScreen = document.getElementById('question-screen');
+        const detailsScreen = document.getElementById('details-screen');
+        const dareBtn = document.getElementById('dare-btn');
+        const btnYes = document.getElementById('btn-yes');
+        const btnNo = document.getElementById('btn-no');
+        const buttonsContainer = document.getElementById('buttons-container');
+        const confettiContainer = document.getElementById('confetti');
+        const floatingIcons = document.getElementById('floating-icons');
+
+        function showScreen(screen) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            screen.classList.add('active');
+        }
+
+        // Dare button click
+        dareBtn.addEventListener('click', () => {
+            showScreen(questionScreen);
+        });
+
+        // YES button
+        btnYes.addEventListener('click', () => {
+            showScreen(detailsScreen);
+            launchConfetti();
+            launchFloatingIcons();
+        });
+
+        // NO button escape behavior
+        let noButtonEscapeCount = 0;
+
+        function moveNoButton() {
+            const maxX = window.innerWidth - btnNo.offsetWidth - 20;
+            const maxY = window.innerHeight - btnNo.offsetHeight - 20;
+            
+            let newX = Math.random() * maxX;
+            let newY = Math.random() * maxY;
+            
+            newX = Math.max(20, Math.min(newX, maxX));
+            newY = Math.max(20, Math.min(newY, maxY));
+            
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = newX + 'px';
+            btnNo.style.top = newY + 'px';
+            btnNo.style.zIndex = '1000';
+            
+            noButtonEscapeCount++;
+            
+            const messages = [
+                'No thanks',
+                'Nope! 🌳',
+                'The Lorax says try again!',
+                'I speak for the trees... they say YES!',
+                'Unless you click YES...',
+                'The trees are watching 👀',
+                'Just say YES! 🌳',
+                'Truffula trees demand it!',
+            ];
+            
+            btnNo.textContent = messages[Math.min(noButtonEscapeCount, messages.length - 1)];
+        }
+
+        btnNo.addEventListener('mouseenter', moveNoButton);
+        btnNo.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+
+        // Confetti
+        function launchConfetti() {
+            confettiContainer.classList.add('active');
+            const colors = ['#87CEEB', '#FF8C42', '#FFD166', '#FF6B9D', '#9B59B6', '#7CB518', '#4A90D9'];
+            
+            for (let i = 0; i < 80; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confettiContainer.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 40);
+            }
+        }
+
+        // Floating icons
+        function launchFloatingIcons() {
+            floatingIcons.classList.add('active');
+            const icons = ['🌳', '✨', '🧡', '🌸', '💜', '💛', '🌿'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const icon = document.createElement('div');
+                    icon.className = 'floating-icon';
+                    icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+                    icon.style.left = Math.random() * 100 + '%';
+                    icon.style.animationDelay = Math.random() * 0.5 + 's';
+                    floatingIcons.appendChild(icon);
+                    
+                    setTimeout(() => icon.remove(), 3500);
+                }, i * 150);
+            }
+        }
+    </script>
+</body>
+</html>
